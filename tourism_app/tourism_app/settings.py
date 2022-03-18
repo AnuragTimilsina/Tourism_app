@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'service',
     'payment',
     'blog',
-    'djangoratings',
 ]
 
 MIDDLEWARE = [

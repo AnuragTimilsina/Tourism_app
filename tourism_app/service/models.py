@@ -1,10 +1,10 @@
 from django.db import models
-from tourism_app.agencies.models import agency
+from agencies.models import agency
 from tourists.models import User
-from djangoratings.fields import RatingField
+from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
-class service(models.model):
+class service(models.Model):
     booking_id = models.CharField(max_length=7, primary_key=True)
     Agency = models.ForeignKey(agency, on_delete=models.CASCADE, null=True)
     source = models.CharField(max_length=100)
@@ -15,11 +15,12 @@ class service(models.model):
     amount=models.PositiveIntegerField()
     users = models.ManyToManyField(User, blank=True)
 
-class review(models.model):
+class review(models.Model):
     tourist = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     feedback = models.TextField(max_length=200)
-    rating = RatingField(range=5) # 5 possible rating values 1-5
+    rating = models.SmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)]) # 5 possible rating values 1-5
     Service = models.ForeignKey(service, on_delete=models.CASCADE, null=True)
+
 
 
 
