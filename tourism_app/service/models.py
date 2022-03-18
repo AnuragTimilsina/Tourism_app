@@ -22,5 +22,3 @@ class review(models.Model):
     Service = models.ForeignKey(service, on_delete=models.CASCADE, null=True)
 
 
-
-
