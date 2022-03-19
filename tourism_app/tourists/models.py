@@ -20,7 +20,7 @@ class User(AbstractUser):
     mobile_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
     country = models.CharField(max_length=100, blank=True)
     address = models.CharField(max_length=300, blank=True)
-    profile_pic = models.ImageField(default="")
+    profile_pic = models.ImageField(blank=True, null=True) # upload_to=upload_to
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
