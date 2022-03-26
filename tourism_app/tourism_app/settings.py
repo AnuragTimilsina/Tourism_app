@@ -137,3 +137,5 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ],
 }
+
+AUTHENTICATION_BACKENDS = ['tourists.auth_backend.EmailBackend']

@@ -8,7 +8,7 @@ from .manager import CustomUserManager
 
 class User(AbstractUser):
     #Contacts:
-    is_tourist = models.BooleanField(default=False)
+    is_tourist = models.BooleanField(default=True)
     is_agency = models.BooleanField(default=False)
 
     username = None
