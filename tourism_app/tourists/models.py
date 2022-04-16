@@ -62,8 +62,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def save(self, *args, **kwargs):
-        if not self.email_from_work:
-            self.email_from_work = self.get_email()
+        if not self.email:
+            self.email = self.get_email()
         super(User, self).save(*args, **kwargs)
 
     def get_email(self):
