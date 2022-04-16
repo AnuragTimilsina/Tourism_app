@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'knox',
+    'rest_framework.authtoken',
+    # 'knox',
     'tourists',
     'agencies',
     'service',
@@ -134,7 +135,8 @@ AUTH_USER_MODEL = 'tourists.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'knox.auth.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
 }
 
@@ -144,4 +146,4 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
-AUTHENTICATION_BACKENDS = ('authentication.backends.EmailBackend',)
+AUTHENTICATION_BACKENDS = ('tourists.backends.EmailBackend',)
