@@ -9,15 +9,18 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email', 'username', 'password', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address')
         extra_kwargs = {'password': {'write_only': True}}
-
-
+        
+        ## YO function nai call vayeko xaina. 
         def create(self, validated_data):
 
             validated_data['is_tourist'] = True
             validated_data['is_agency'] = False
-            user = User.objects.create_user(username=validated_data['username'], email=validated_data['email'], is_tourist=validated_data['is_tourist'], is_agency=validated_data['is_agency'], mobile_number=validated_data['mobile_number'], country=validated_data['country'], address=validated_data['address'])
+            user = User.objects.create(username=validated_data['username'], email=validated_data['email'], is_tourist=validated_data['is_tourist'], is_agency=validated_data['is_agency'], mobile_number=validated_data['mobile_number'], country=validated_data['country'], address=validated_data['address'])
+            print(user)
             user.set_password(validated_data['password'])
             user.save()
+
+            
 
             return user
 

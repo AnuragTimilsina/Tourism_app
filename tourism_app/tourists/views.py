@@ -12,11 +12,13 @@ from rest_framework.authtoken.models import Token
 
 # Register API:
 class RegisterAPI(APIView):
-    serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = RegisterSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        
+        if not serializer.is_valid():
+            return Response({'status': 403, 'errors': serializer.errors, 'message': 'Some error occured!!!'})
+
         serializer.save()
 
         user = User.objects.get(username=serializer.data['username'])

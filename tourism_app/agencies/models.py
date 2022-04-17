@@ -8,8 +8,6 @@ from django.core.validators import RegexValidator
 # Create your models here.
 class agency(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = None
-    last_name = None
     company_name = models.CharField(max_length=300, blank=False, default="")
 
     # Contacts
@@ -20,5 +18,5 @@ class agency(models.Model):
         validators=[phone_regex], max_length=17, blank=True)
 
     def __str__(self):
-        return self.email
+        return self.company_name
 

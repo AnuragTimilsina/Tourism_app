@@ -1,7 +1,8 @@
 from django.db import models
+from .manager import CustomUserManager
 
 from django.core.validators import RegexValidator
-from django.contrib.auth.models import PermissionsMixin, UserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
@@ -12,12 +13,6 @@ from django.dispatch import receiver
 from tourists.storage import OverwriteStorage, ProfileImagePath
 import os
 
-
-class CustomUserManager(UserManager):
-    def _create_user(self, username, email, password, **extra_fields):
-        if not username and not email:
-            raise ValueError('The given username and email must be set')
-        return super(CustomUserManager, self)._create_user(username, email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -39,11 +34,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         },
     )
 
-    #Contacts:
     is_tourist = models.BooleanField(default=True)
     is_agency = models.BooleanField(default=False)
-
-    # username = None
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
     email = models.EmailField(_('email address'), unique=True)
 
