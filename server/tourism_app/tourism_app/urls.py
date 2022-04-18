@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
+from rest_framework.documentation import include_docs_urls
 
 
 urlpatterns = [
@@ -24,8 +25,9 @@ urlpatterns = [
     path('tourists/', include('tourists.urls')),
     path('services/', include('service.urls')),
     path('api_schema', get_schema_view(title='Tourism schema', description='API schema for tourism app'), name='api-schema'),
-    path('docs/', TemplateView.as_view(
-        template_name='docs.html',
-        extra_context={'schema_url':'api-schema'}
-        ), name='swagger-ui'),
+    # path('docs/', TemplateView.as_view(
+    #     template_name='docs.html',
+    #     extra_context={'schema_url':'api-schema'}
+    #     ), name='swagger-ui'),
+    path('docs/', include_docs_urls(title='My API title')),
 ]
