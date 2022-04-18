@@ -22,6 +22,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tourists/', include('tourists.urls')),
+    path('services/', include('service.urls')),
     path('api_schema', get_schema_view(title='Tourism schema', description='API schema for tourism app'), name='api-schema'),
     path('docs/', TemplateView.as_view(
         template_name='docs.html',

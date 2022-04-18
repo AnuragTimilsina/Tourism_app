@@ -4,16 +4,21 @@ from tourists.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
+
 class service(models.Model):
-    booking_id = models.CharField(max_length=7, primary_key=True)
+    service_id = models.AutoField(primary_key=True)
     Agency = models.ForeignKey(agency, on_delete=models.CASCADE, null=True)
-    source = models.CharField(max_length=100)
     destination = models.CharField(max_length=100)
     package_name = models.CharField(max_length=100, blank=False, default="")
     departure_date = models.DateField()
     no_of_person = models.PositiveIntegerField(default=0)
     amount=models.PositiveIntegerField()
     users = models.ManyToManyField(User, blank=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return(str(self.package_name))
+
 
 class review(models.Model):
     tourist = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
