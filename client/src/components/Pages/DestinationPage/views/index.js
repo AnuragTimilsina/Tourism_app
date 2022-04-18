@@ -9,12 +9,7 @@ export default function DestinationPage() {
     <div className="DestinationPage">
       <div className="DestinationPageTitle">
         <div className="DestinationPageDescription">
-          <h1>POPULAR TOURIST PLACE</h1>
-          <p>
-            These are the popular destination over nepal that you can enjoy
-            <br />
-            These are the popular destination over nepal that you can enjoy
-          </p>
+          <h1>Popular Touris Destinations</h1>
         </div>
         <button className="DestinationPageViewAll">View All</button>
       </div>
