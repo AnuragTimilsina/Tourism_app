@@ -1,0 +1,101 @@
+.LoginPage
+  height: 90vh
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+
+  .Components
+    position: relative
+    display: flex
+    flex-direction: row
+    height: 80vh
+    width: 80vw
+
+    border: 1px black solid
+    & input
+      border: 1px #C4C4C4 solid
+      border-radius: 0px
+      width: 80%
+      height: 6%
+      margin-bottom: 2%
+    & input :after
+      border: none
+    & button
+      margin-top: 3%
+      height: 6%
+      background:#FF492F
+      border: none
+      color: white
+      width: 82.5%
+    & h1
+      font-size: 54px
+      margin-bottom: 2%
+    & p
+      margin-bottom: 2%
+    .Login
+      flex: 1
+      display: flex
+      flex-direction: column
+      justify-content: center
+      padding-left: 7%
+    .Register
+      display: flex
+      justify-content: center
+      padding-left: 7%
+      flex: 1
+      flex-direction: column
+    .FloatingComponent
+      position: absolute
+      height: 100%
+      width: 50%
+      background: #FF492F
+      margin-right: 50%
+      transition: all .5s ease-in-out
+      &Active
+        margin-left: 50%
+        transition: all .5s ease-in-out
+        & div
+
+      & button
+        margin-top: 3%
+        height: 6%
+        background: white
+        border: none
+        color: #FF492F
+        width: 82.5%
+      & div
+        color: white
+        height: 100%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        padding-left: 7%
+
+        & p
+          font-size: 24px
+    .OR
+        padding-left: 12vw
+
+        position: relative
+        &:before 
+            content: ""
+            text-align:left
+            width: 11vw
+            height: 0.5vh
+            background: #000000
+            left: 0
+            top: 50%
+            position: absolute
+      
+        &:after 
+            content: ""
+            text-align:right
+            width: 11vw
+            height: 0.5vh
+            background: #000000
+            right: 0
+            top: 50%
+            position: absolute
+            margin-right: 6vw
+      
