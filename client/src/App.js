@@ -6,17 +6,18 @@ import EachDestination from "./components/Pages/EachDestination/views";
 import Login from "./components/Pages/LoginPage/login"
 import Admin from "./components/Pages/LoginPage/AdminLogin/adminlogin"
 import NavigationBar from "./components/Elements/NavBar/navBar";
+import Footer from "./components/Elements/Footer/footer";
 function App() {
   return (
     <div className="App">
-      {/* <NavigationBar/> */}
+      <NavigationBar/>
       <Routes>
-      <Route path="/nav" element={<NavigationBar/>} />
         <Route path="/" element={<DestinationPage />} />
         <Route path="/:id" element={<EachDestination />} />
         <Route path="/login" element={< Login/>} />
         <Route path="/admin" element={< Admin/>} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./navBar.sass";
 import Logo from "../../../assets/images/Logo.png";
 import { Link } from "react-router-dom";
 export default function NavigationBar() {
-  const [menu, setMenu] = useState(true);
-  const of = () => {
-    setMenu(true);
-  };
+  
   return (
     <div className="Navbar">
       <div className="Header">
         <div className="logo">
+          <Link to= "/">
           <img src={Logo}/>
+          </Link>
         </div>
         <div className="options">
           
@@ -24,24 +23,16 @@ export default function NavigationBar() {
           <p>
             <p>Contact-US</p>
           </p>
-          <p>
-            <Link to="/login"className="Login"><p>Login|Signup</p></Link>
-          </p>
-          <div
-            className="burger"
-            onClick={() => {
-              if (menu) {
-                setMenu(false);
-              } else {
-                setMenu(true);
-              }
-            }}
-          >
-            <span />
-            <span />
-            <span />
           </div>
-        </div>
+          <Link to ="/login" >
+          <button className ="Login">      
+           Login|Signup
+           </button>   
+           </Link> 
+          
+        
+          
+        
       </div>
       
     </div>
