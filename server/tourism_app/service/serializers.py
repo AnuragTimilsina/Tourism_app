@@ -6,7 +6,7 @@ class ServiceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = service
-        fields = ['Agency', 'destination', 'package_name', 'departure_date', 'no_of_person', 'amount', 'description', 'users']
+        fields = ['Agency', 'package_name', 'departure_date', 'no_of_person', 'amount', 'description', 'users', 'service_pic']
 
     extra_kwargs = {
         'Agency': {'required': True},
