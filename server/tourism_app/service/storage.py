@@ -3,8 +3,12 @@ from django.conf import settings
 import os
 
 
-def ProfileImagePath(instance, filename):
-    return f'userprofile/{instance.username}/{filename}'
+def ServiceImagePath(instance, filename):
+    return f'services/{instance.id}/{filename}'
+
+
+def DestinationImagePath(instance, filename):
+    return f'destination/{instance.id}/{filename}'
 
 
 class OverwriteStorage(FileSystemStorage):

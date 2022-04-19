@@ -8,6 +8,7 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.dispatch import receiver
+from django.contrib.auth.hashers import make_password
 
 # Create your models here.
 from tourists.storage import OverwriteStorage, ProfileImagePath
@@ -56,6 +57,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def save(self, *args, **kwargs):
+        self.set_password(self.password) ## Remember this line and laugh hard!!!
         if not self.email:
             self.email = self.get_email()
         super(User, self).save(*args, **kwargs)

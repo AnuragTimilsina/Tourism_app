@@ -18,6 +18,11 @@ class ServiceSerializer(serializers.ModelSerializer):
         'description': {'required': True},
     }
 
+    # def __init__(self, instance=None, **kwargs):
+    #     super().__init__(instance, **kwargs)
+    #     for i in self.get_field_names():
+    #         i.read_only = True
+
     def create(self, validated_data):
         services = service.objects.create(
             Agency = validated_data.get('Agency'),
@@ -28,6 +33,9 @@ class ServiceSerializer(serializers.ModelSerializer):
             amount = validated_data.get('amount'),
             description = validated_data.get('description'),
         )
+        services.save()
+        return services
+
 
     def update(self, instance, validated_data):
         instance.Agency = validated_data.get('Agency')
