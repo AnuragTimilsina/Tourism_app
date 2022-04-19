@@ -3,6 +3,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
+
+    use_in_migrations = True
+    
     """
         Create and save a User with the given username and password.
     """
