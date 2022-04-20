@@ -1,8 +1,7 @@
-from .views import RegisterAPI
+from .views import RegisterAPI, CustomObtainAuthToken
 from django.urls import path
-from rest_framework.authtoken import views
 
 urlpatterns = [
     path('api/register/', RegisterAPI.as_view(), name='tourist-register'),
-    path('api/token-auth/', views.obtain_auth_token),
+    path('api/authenticate/', CustomObtainAuthToken.as_view()),
 ]
