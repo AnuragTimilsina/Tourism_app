@@ -57,8 +57,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def save(self, *args, **kwargs):
-        if not self.is_superuser:  ## To prevent double hashing for superuser. 
-            self.set_password(self.password) ## Remember this line and laugh hard!!!
+        if not self.is_superuser:  ## To prevent double hashing for superuser.
+            # print(self.is_agency)
+            if not self.is_agency: ## To prevent double hashing when the is_agency field is changed in admin panel. 
+                self.set_password(self.password) ## Remember this line and laugh hard!!!
         if not self.email:
             self.email = self.get_email()
         super(User, self).save(*args, **kwargs)

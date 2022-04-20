@@ -1,6 +1,6 @@
 from django.urls import path
-from rest_framework.authtoken import views
+from .views import AgencyAuthToken
 
 urlpatterns = [
-    path('api/token-auth/', views.obtain_auth_token),
+    path('api/authenticate/', AgencyAuthToken.as_view(), name='agency-login'),
 ]
