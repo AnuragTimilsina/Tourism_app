@@ -16,7 +16,7 @@ class CustomUserManager(BaseUserManager):
         if not password:
             raise ValueError(_('Password is not provided'))
         user = self.model(username=username, **extra_fields)
-        user.set_password(password)
+        user.set_password(password) # Hashish for superuser. 
         user.save(using=self._db) 
         return user
 

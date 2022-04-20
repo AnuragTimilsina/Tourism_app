@@ -57,7 +57,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def save(self, *args, **kwargs):
-        self.set_password(self.password) ## Remember this line and laugh hard!!!
+        if not self.is_superuser:  ## To prevent double hashing for superuser. 
+            self.set_password(self.password) ## Remember this line and laugh hard!!!
         if not self.email:
             self.email = self.get_email()
         super(User, self).save(*args, **kwargs)
@@ -70,13 +71,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         self.email = self.__class__.objects.normalize_email(self.email)
 
     def delete(self, *args, **kwargs):
-        self.image
+        self.profile_pic
         super(User, self).delete(*args, **kwargs)
 
 
 @receiver(models.signals.post_delete, sender=User)
 def post_delete_file_path(sender, instance, **kwargs):
-    if instance.image:
+    if instance.profile_pic:
         dirname, filename = instance.image.path.split('/')
         if os.path.exists(dirname):
             os.remove(dirname)

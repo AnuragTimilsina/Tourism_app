@@ -7,7 +7,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'password', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address')
+        fields = ('id', 'email', 'username', 'password', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address', 'profile_pic')
         extra_kwargs = {'password': {'write_only': True}}
         
         ## Don't implement much logic in serializer. 
@@ -28,5 +28,5 @@ class RegisterSerializer(serializers.ModelSerializer):
 class touristSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address') # Profile Image to be handeled soon.
+        fields = ('username', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address', 'profile_pic') # Profile Image to be handeled soon.
 
