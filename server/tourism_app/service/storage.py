@@ -8,7 +8,7 @@ def ServiceImagePath(instance, filename):
 
 
 def DestinationImagePath(instance, filename):
-    return f'destination/{instance.id}/{filename}'
+    return f'destination/{instance.destination_name}/{filename}'
 
 
 class OverwriteStorage(FileSystemStorage):

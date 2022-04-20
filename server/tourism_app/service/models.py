@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from agencies.models import agency
 from tourists.models import User
@@ -7,8 +8,20 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 
+class destination(models.Model):
+    destination_id = models.AutoField(primary_key=True)
+    destination_name = models.CharField(max_length=300)
+    destination_description = models.TextField(blank=True)
+    destination_pic = models.ImageField(_('Destination Image'), storage=OverwriteStorage(
+    ), upload_to=DestinationImagePath, blank=True, null=True)
+
+    def __str__(self):
+        return(str(self.destination_name))
+
+
 class service(models.Model):
     service_id = models.AutoField(primary_key=True)
+    Destination = models.ForeignKey(destination, on_delete=models.CASCADE)
     Agency = models.ForeignKey(agency, on_delete=models.CASCADE, null=True)
     package_name = models.CharField(max_length=100, blank=False, default="")
     departure_date = models.DateField()
@@ -21,14 +34,6 @@ class service(models.Model):
 
     def __str__(self):
         return(str(self.package_name))
-
-
-class destination(models.Model):
-    destination_name = models.CharField(max_length=300, primary_key=True)
-    destination_description = models.TextField(blank=True)
-    services = models.ForeignKey(service, on_delete=models.CASCADE, null=True)
-    destination_pic = models.ImageField(_('Destination Image'), storage=OverwriteStorage(
-    ), upload_to=DestinationImagePath, blank=True, null=True)
 
 
 class review(models.Model):

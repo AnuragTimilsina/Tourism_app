@@ -6,11 +6,11 @@ class ServiceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = service
-        fields = ['Agency', 'package_name', 'departure_date', 'no_of_person', 'amount', 'description', 'users', 'service_pic']
+        fields = ['Agency', 'Destination', 'package_name', 'departure_date', 'no_of_person', 'amount', 'description', 'users', 'service_pic']
 
     extra_kwargs = {
         'Agency': {'required': True},
-        'destination': {'required': True},
+        'Destination': {'required': True},
         'package_name': {'required': True},
         'departure_date': {'required': True},
         'no_of_person': {'required': True},
@@ -26,12 +26,13 @@ class ServiceSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         services = service.objects.create(
             Agency = validated_data.get('Agency'),
-            destination = validated_data.get('destination'),
+            Destination = validated_data.get('Destination'),
             package_name = validated_data.get('package_name'),
             departure_date = validated_data.get('departure_date'),
             no_of_person = validated_data.get('no_of_person'),
             amount = validated_data.get('amount'),
             description = validated_data.get('description'),
+            service_pic = validated_data.get('service_pic')
         )
         services.save()
         return services
@@ -39,12 +40,13 @@ class ServiceSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.Agency = validated_data.get('Agency')
-        instance.destination = validated_data.get('destination')
+        instance.Destination = validated_data.get('Destination')
         instance.package_name = validated_data.get('package_name')
         instance.departure_date = validated_data.get('departure_date')
         instance.no_of_person = validated_data.get('no_of_person')
         instance.amount = validated_data.get('amount')
         instance.description = validated_data.get('description')
+        instance.service_pic = validated_data.get('service_pic')
         instance.save()
         return instance
 
