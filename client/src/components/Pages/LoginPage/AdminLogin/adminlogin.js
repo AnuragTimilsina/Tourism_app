@@ -10,6 +10,7 @@ function AdminLogin() {
 
    
     return (
+        
         <div className="login">
             <h1>Login As Service</h1>
             <input
@@ -29,6 +30,7 @@ function AdminLogin() {
             <button className="sumbit">Continue</button>
             
         </div>
+        
     )
 }
 export default AdminLogin;

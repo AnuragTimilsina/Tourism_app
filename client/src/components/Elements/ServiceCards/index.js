@@ -1,6 +1,7 @@
 import React from "react";
 import "../DestinationCards/DestinationCards.sass";
 import { AiOutlineArrowRight, AiTwotoneStar } from "react-icons/ai";
+import Footer from "../Footer/footer"
 export default function ServiceCards(prop) {
   return (
     <div className="DestinationCards">
@@ -20,5 +21,6 @@ export default function ServiceCards(prop) {
         </div>
       </div>
     </div>
+   
   );
 }

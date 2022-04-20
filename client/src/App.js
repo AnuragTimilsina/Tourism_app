@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <NavigationBar/>
       <Routes>
+      <Route path="/foot" element={<Footer />} />
         <Route path="/" element={<DestinationPage />} />
         <Route path="/:id" element={<EachDestination />} />
         <Route path="/login" element={< Login/>} />
