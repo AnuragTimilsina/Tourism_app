@@ -47,3 +47,18 @@ class CustomObtainAuthToken(ObtainAuthToken):
         token = Token.objects.get(key=response.data['token'])
         user = User.objects.get(id=token.user_id)
         return Response({'token': token.key, 'user': touristSerializer(user).data},status=200)
+
+
+## Verify token: 
+class VerifyToken(APIView):
+    '''
+        This is the endpoint to verify token. 
+    '''
+
+    def post(self, request, *args, **kwargs):
+        
+        tokens = [str(i) for i in Token.objects.all()]
+        # print(tokens)
+        if request.data['token'] in tokens:
+            return Response({'token_verified':True})
+        return Response({'token_verified':False})
