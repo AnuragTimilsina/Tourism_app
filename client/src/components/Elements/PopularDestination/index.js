@@ -1,9 +1,11 @@
 import React from "react";
-import DestinationCards from "../../../Elements/DestinationCards/index";
-import Dhulikhel from "../../../../assets/images/dhulikhel.jpg";
-import "./DestinationPage.sass";
+import Dhulikhel from "../../../assets/images/dhulikhel.jpg";
+import "./PopularDestination.sass";
+import { useNavigate } from "react-router-dom";
+import DestinationCards from "../DestinationCards";
+export default function PopularDestination() {
+  const navigate = useNavigate();
 
-export default function DestinationPage() {
   const x = [1, 2, 3];
   return (
     <div className="DestinationPage">
@@ -11,7 +13,14 @@ export default function DestinationPage() {
         <div className="DestinationPageDescription">
           <h1>Popular Touris Destinations</h1>
         </div>
-        <button className="DestinationPageViewAll">View All</button>
+        <button
+          className="DestinationPageViewAll"
+          onClick={() => {
+            navigate("/destination");
+          }}
+        >
+          View All
+        </button>
       </div>
 
       <div className="DestinationCardsSection">

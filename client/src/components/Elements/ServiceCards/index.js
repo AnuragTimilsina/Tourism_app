@@ -1,8 +1,9 @@
 import React from "react";
 import "../DestinationCards/DestinationCards.sass";
 import { AiOutlineArrowRight, AiTwotoneStar } from "react-icons/ai";
-import Footer from "../Footer/footer"
+import { Link, Navigate, useNavigate } from "react-router-dom";
 export default function ServiceCards(prop) {
+  const navigate = useNavigate();
   return (
     <div className="DestinationCards">
       <div className="image">
@@ -15,12 +16,17 @@ export default function ServiceCards(prop) {
       <div className="Description">
         <p className="title">{prop.title}</p>
         <p className="description">{prop.description}</p>
-        <div className="startJourneyButton">
+
+        <div
+          className="startJourneyButton"
+          onClick={() => {
+            navigate(`/service/${prop.id}`);
+          }}
+        >
           <p>Know More</p>
           <AiOutlineArrowRight />
         </div>
       </div>
     </div>
-   
   );
 }

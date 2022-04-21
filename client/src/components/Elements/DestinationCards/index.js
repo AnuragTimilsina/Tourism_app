@@ -8,10 +8,10 @@ export default function DestinationCards(prop) {
     <div className="DestinationCards">
       <div className="image">
         <img src={prop.src} alt={prop.src} />
-        <div className="ratingBox">
+        {/* <div className="ratingBox">
           <AiTwotoneStar size={26} color="#FF492F" />
           <h1>4.9</h1>
-        </div>
+        </div> */}
       </div>
       <div className="Description">
         <p className="title">{prop.title}</p>
@@ -19,7 +19,7 @@ export default function DestinationCards(prop) {
         <div
           className="startJourneyButton"
           onClick={() => {
-            navigate(`${prop.id}`);
+            navigate(`/destination/${prop.id}`);
           }}
         >
           <p>Start Journey</p>

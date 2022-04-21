@@ -1,11 +1,28 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import dhulikhel from "../../../../assets/images/dhulikhel.jpg";
+import { BaseUrl } from "../../../../common/config/httpsConfig";
 import ServiceCards from "../../../Elements/ServiceCards";
 import "./EachDestination.sass";
-
+import useAuth from "../../../../logic/auth";
 export default function EachDestination() {
+  const { checkauth } = useAuth();
+  useEffect(() => {
+    checkauth();
+  });
   const param = useParams();
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    setServices([1, 2, 3, 4]);
+    axios.get(BaseUrl + param.id).then((res) => {
+      console.log(res);
+    });
+    // axios.get(BaseUrl + `services/servicelist/${param.id}`).then((res) => {
+    //   setServices(res.data);
+    // });
+  }, []);
+
   return (
     <div className="EachDestination">
       <div className="Page1">
@@ -39,7 +56,7 @@ export default function EachDestination() {
           <button>See All</button>
         </div>
         <div className="ServiceCards">
-          {[1, 2, 3].map((a) => (
+          {services.map((a) => (
             <ServiceCards
               src={dhulikhel}
               title="Dwarika"

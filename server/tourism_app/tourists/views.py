@@ -20,7 +20,7 @@ class RegisterAPI(APIView):
         serializer = RegisterSerializer(data=request.data)
         
         if not serializer.is_valid():
-            return Response({'status': 403, 'errors': serializer.errors, 'message': 'Some error occured!!!'})
+            return Response({'error':serializer.errors})
 
         serializer.save()
 
@@ -29,8 +29,7 @@ class RegisterAPI(APIView):
         token_obj, _ = Token.objects.get_or_create(user=user)
 
         return Response({
-            'status': 200,
-            'payload':serializer.data, 
+            'payload':serializer.errors, 
             'token': str(token_obj)
         })
 
@@ -47,4 +46,4 @@ class CustomObtainAuthToken(ObtainAuthToken):
         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
         user = User.objects.get(id=token.user_id)
-        return Response({'token': token.key, 'user': touristSerializer(user).data})
+        return Response({'token': token.key, 'user': touristSerializer(user).data},status=200)
