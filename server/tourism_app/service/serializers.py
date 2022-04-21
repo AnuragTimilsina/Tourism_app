@@ -1,4 +1,4 @@
-from .models import service
+from .models import service, destination
 from rest_framework import serializers
 
 
@@ -49,5 +49,13 @@ class ServiceSerializer(serializers.ModelSerializer):
         instance.service_pic = validated_data.get('service_pic')
         instance.save()
         return instance
+
+
+class DestinationSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = destination
+        fields = '__all__'
+
 
     

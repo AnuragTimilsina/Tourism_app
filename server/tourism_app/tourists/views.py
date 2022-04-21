@@ -12,6 +12,9 @@ from rest_framework.authtoken.models import Token
 
 # Register API:
 class RegisterAPI(APIView):
+    '''
+        This is the endpoint to register tourist users. 
+    '''
 
     def post(self, request, *args, **kwargs):
         serializer = RegisterSerializer(data=request.data)
