@@ -34,7 +34,6 @@ class RegisterAPI(APIView):
         })
 
 
-
 ## Custom auth token: 
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
