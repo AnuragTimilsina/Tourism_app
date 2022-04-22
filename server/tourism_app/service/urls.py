@@ -14,8 +14,8 @@ urlpatterns = [
     # path('listdestinationservice/<destination_id>', views.ListDestinationServices.as_view(), name='destination-service-list'),
     #review:
     path('addreview/', views.ReviewCreateView.as_view(), name='review-add'),
-    path('reviewupdate/<tourist>/', views.ReviewUpdateView.as_view(), name='update-review'),
-    path('reviewdelete/<tourist>/', views.ReviewDeleteView.as_view(), name='delete-review'),
-    path('reviewdetail/<tourist>', views.ReviewDetailView.as_view(), name='detail-review'),
+    path('reviewupdate/<review_id>/', views.ReviewUpdateView.as_view(), name='update-review'),
+    path('reviewdelete/<review_id>/', views.ReviewDeleteView.as_view(), name='delete-review'),
+    path('reviewdetail/<review_id>', views.ReviewDetailView.as_view(), name='detail-review'),
     path('reviewlist/', views.ReviewListView.as_view(), name='list-review'),
 ]
