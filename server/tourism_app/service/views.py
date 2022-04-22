@@ -1,7 +1,7 @@
-from .models import service, destination
+from .models import service, destination, review
 from tourists.models import User
 from agencies.models import agency
-from .serializers import ServiceSerializer, DestinationSerializer
+from .serializers import ServiceSerializer, DestinationSerializer, ReviewSerializer
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from tourists.permissions import agencyPermission, touristPermission
@@ -83,3 +83,39 @@ class DestinationDetailView(generics.RetrieveAPIView):
 #         services = service.objects.filter(Destination=request.destination_id)
 
 #         return Response(services)
+
+
+### Review view:
+
+class ReviewListView(generics.ListAPIView):
+    queryset = review.objects.all()
+    permission_classes = (IsAuthenticated, touristPermission)
+    serializer_class = ReviewSerializer
+
+
+class ReviewCreateView(generics.CreateAPIView):
+    queryest = review.objects.all()
+    permission_classes = (IsAuthenticated, touristPermission)
+    serializer_class = ReviewSerializer
+
+
+class ReviewDetailView(generics.RetrieveAPIView):
+    queryest = review.objects.all()
+    permission_classes = (IsAuthenticated, touristPermission)
+    serializer_class = ReviewSerializer
+    lookup_field = 'tourist'
+
+
+class ReviewDeleteView(generics.DestroyAPIView):
+    queryest = review.objects.all()
+    permission_classes = (IsAuthenticated, touristPermission)
+    serializer_class = ReviewSerializer
+    lookup_field = 'tourist'
+
+
+class ReviewUpdateView(generics.UpdateAPIView):
+    queryest = review.objects.all()
+    permission_classes = (IsAuthenticated, touristPermission)
+    serializer_class = ReviewSerializer
+    lookup_field = 'tourist'
+

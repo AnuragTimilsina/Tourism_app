@@ -1,4 +1,4 @@
-from .models import service, destination
+from .models import service, destination, review
 from rest_framework import serializers
 
 
@@ -55,6 +55,13 @@ class DestinationSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = destination
+        fields = '__all__'
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = review
         fields = '__all__'
 
 
