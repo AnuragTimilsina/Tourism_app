@@ -29,7 +29,7 @@ class RegisterAPI(APIView):
         token_obj, _ = Token.objects.get_or_create(user=user)
 
         return Response({
-            'payload':serializer.errors, 
+            'error':serializer.errors, 
             'token': str(token_obj)
         })
 
