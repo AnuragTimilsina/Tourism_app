@@ -13,6 +13,32 @@
     width: 80vw
 
     border: 1px black solid
+    .inputImage
+      position: relative
+      border: 2px black solid
+      width: 100px
+      height: 100px
+      border-radius: 100px
+      & svg
+        position: absolute
+      & input
+        width: 100px
+        height: 100px
+        border-radius: 100px
+        border: none
+        opacity: 0
+      .smallIcon
+        position: absolute
+        background: white
+        height: 24px
+        width: 24px
+        border-radius: 24px
+        display: flex
+        border: 2px solid black
+        bottom: 0%
+        right: 0%
+        align-items: center
+        justify-content: center
     & input
       border: 1px #C4C4C4 solid
       border-radius: 0px
@@ -24,7 +50,7 @@
     & button
       margin-top: 3%
       height: 6%
-      background:#FF492F
+      background: #FF492F
       border: none
       color: white
       width: 82.5%
@@ -75,27 +101,25 @@
         & p
           font-size: 24px
     .OR
-        padding-left: 12vw
+      padding-left: 12vw
+      position: relative
+      &:before
+        content: ""
+        text-align: left
+        width: 11vw
+        height: 0.5vh
+        background: #000000
+        left: 0
+        top: 50%
+        position: absolute
 
-        position: relative
-        &:before 
-            content: ""
-            text-align:left
-            width: 11vw
-            height: 0.5vh
-            background: #000000
-            left: 0
-            top: 50%
-            position: absolute
-      
-        &:after 
-            content: ""
-            text-align:right
-            width: 11vw
-            height: 0.5vh
-            background: #000000
-            right: 0
-            top: 50%
-            position: absolute
-            margin-right: 6vw
-      
+        &:after
+          content: ""
+          text-align: right
+          width: 11vw
+          height: 0.5vh
+          background: #000000
+          right: 0
+          top: 50%
+          position: absolute
+          margin-right: 6vw

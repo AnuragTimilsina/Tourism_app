@@ -2,7 +2,10 @@ import "./loginstyle.sass";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { CgProfile } from "react-icons/cg";
 import { BaseUrl } from "../../../common/config/httpsConfig";
+import { GrFormAdd } from "react-icons/gr";
+import { TiTick } from "react-icons/ti";
 
 function Login() {
   //login states
@@ -20,6 +23,7 @@ function Login() {
   const [email, setemail] = useState("");
   const [address, setAddress] = useState("");
   const [password2, setpassword2] = useState("");
+  const [image, setImage] = useState();
 
   //signuperrors
   const [usernameError, setusernameError] = useState("");
@@ -110,12 +114,12 @@ function Login() {
               setLoginPassword(event.target.value);
             }}
           />
-          <p className="forgot">
+          {/* <p className="forgot">
             If you have forgotten your password,
             <Link className="link" to="/forget">
               click here!
             </Link>{" "}
-          </p>
+          </p> */}
           <p style={{ color: "red" }}> {loginError} </p>
           {/* <Link to="/"> */}
           <button className="sumbit" onClick={loginData}>
@@ -129,12 +133,22 @@ function Login() {
               click here!
             </Link>{" "}
           </p>
-
-          <div> </div>
-          <div></div>
         </div>
         <div className="Register">
           <h1>Signup</h1>
+          <div className="inputImage">
+            <CgProfile size={100} />
+            <div className="smallIcon">
+              {!image ? <GrFormAdd size={18} /> : <TiTick size={18} />}
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                setImage(e.target.files);
+              }}
+            />
+          </div>
           <p style={{ color: "red", fontSize: "12px" }}>{usernameError}</p>
           <input
             type="textbox"

@@ -1,4 +1,6 @@
 .EachServices
+    display: flex
+    flex-direction: column
     .Page1
         position: relative
         .Image
@@ -25,57 +27,128 @@
                     font-size: 24px
     .Page2
         width: 100%
-        .contents
+        .padding
             display: flex
+            flex-direction: column
             margin: 5% 10%
-            flex-direction: row
-            justify-content: space-between
-            gap: 5%
-            .descriptions
-                width: 100%
-                .Header
-                    display: flex
-                    flex-direction: row
-                    align-items: center
-                    justify-content: space-between
-                    & h1
-                        font-size: 54px
-                .headings
-                    display: flex
-                    flex-direction: row
-                    align-items: center
-                    color: grey
-                    text-decoration: wavy
-                & span
-                    margin: 30px 0px
-                    display: block
+            .contents
+                display: flex
+                flex-direction: row
+                justify-content: space-between
+                gap: 5%
+                .descriptions
                     width: 100%
-                    border-radius: 100px
-                    height: 1px
-                    background-color: grey
-                .available
-                    display: flex
-                    flex-direction: column
-                    flex-wrap: wrap
-                    height: 200px
-                    font-size: 18px
-                    font-weight: light
-                    font-style: italic
-                    & div
+                    .Header
                         display: flex
                         flex-direction: row
-                        gap: 3%
                         align-items: center
-            .booking
-                width: 20%
-                height: 250px
-                background: #FF492F
-                color: white
-                display: flex
-                flex-direction: column
-                padding: 20px
-                border-radius: 40px
-                justify-content: center
-                & input
-                    border: none
-                    background: transparent
+                        justify-content: space-between
+                        & h1
+                            font-size: 54px
+                    .headings
+                        display: flex
+                        flex-direction: row
+                        align-items: center
+                        color: grey
+                        text-decoration: wavy
+
+                    .available
+                        align-self: center
+                        display: flex
+                        flex-direction: column
+                        flex-wrap: wrap
+                        height: 200px
+                        font-size: 18px
+                        font-weight: light
+                        font-style: italic
+                        & div
+                            display: flex
+                            flex-direction: row
+                            gap: 3%
+                            align-items: center
+                .booking
+                    height: 240px
+                    width: 300px
+                    border: 2px solid #FF492F
+                    color: black
+                    display: flex
+                    flex-direction: column
+                    padding: 30px
+                    border-radius: 0 10px 0 10px
+                    justify-content: space-evenly
+                    .heading
+                        display: flex
+                        flex-direction: row
+                        justify-content: space-between
+                        align-items: flex-end
+                        .price
+                            display: flex
+                            flex-direction: row
+                            align-items: flex-end
+                            gap: 4px
+                        .rating
+                            display: flex
+                            flex-direction: row
+                            align-items: flex-end
+                    .input
+                        position: relative
+                        border-radius: 5px
+                        border: 2px black solid
+                        padding: 10px
+                        & input
+                            width: 100%
+                        .dates
+                            width: 100%
+                            display: flex
+                            flex-direction: row
+                        .horizental
+                            margin-top: 10px
+                            margin-bottom: 10px
+                            display: block
+                            height: 2px
+                            margin-left: -10px
+                            background-color: black
+                            width: calc( 100% + 20px )
+                        .vertical
+                            margin-left: 10px
+                            margin-right: 10px
+                            display: block
+                            margin-top: -10px
+                            margin-bottom: -10px
+                            background-color: black
+                            width: 2px
+                    & input
+                        border: none
+                        background: transparent
+                        color: black
+                    & button
+                        margin-top: 10px
+                        font-size: 16px
+                        padding: 2px 30px
+                        border-radius: 30px
+                        border: none
+                        background-color: #FF492F
+                        color: white
+        .reviewArea
+            & textarea
+                resize: none
+                word-wrap: break-word
+                width: 95%
+                border: 2px black solid
+                border-radius: 30px
+                padding: 5px 30px
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+            & button
+                width: calc( 100% + 15px )
+                background: transparent
+                border: black 2px solid
+                border-radius: 30px
+                padding: 5px
+                margin-top: 20px
+    .line
+        margin: 30px 0px
+        display: block
+        width: 100%
+        border-radius: 100px
+        height: 1px
+        background-color: grey
