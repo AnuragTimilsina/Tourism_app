@@ -44,7 +44,7 @@ class ServiceCreateView(generics.CreateAPIView):
 
 class ServiceDeleteView(generics.DestroyAPIView):
     queryset = service.objects.all()
-    # permission_classes = (agencyPermission,)
+    permission_classes = (agencyPermission,)
     serializer_class = ServiceSerializer
     lookup_field = 'service_id'
 
@@ -63,26 +63,31 @@ class DestinationDetailView(generics.RetrieveAPIView):
 
 
 # Get all services from the selected destination:
-# from rest_framework.views import APIView
-# from rest_framework.response import Response
+class ListDestinationServices(generics.ListAPIView):
+    serializer_class = ServiceSerializer
+    lookup_url_kwarg="destination_id"
+
+    def get_queryset(self):
+        print(self.kwargs)
+        destination = self.kwargs.get(self.lookup_url_kwarg)
+        print(destination)
+        queryset = service.objects.filter(Destination_id=destination)
+        print(queryset)
+        return queryset 
 
 
-# class ListDestinationServices(APIView):
-#     """
-#     View to list all users in the system.
+# Get all services from the selected agency: 
+class ListAgencyServices(generics.ListAPIView):
+    serializer_class = ServiceSerializer
+    lookup_url_kwarg="agency_id"
 
-#     * Requires token authentication.
-#     * Only admin users are able to access this view.
-#     """
-#     permission_classes = (IsAuthenticated, touristPermission)
-
-#     def get(self, request, format=None):
-#         """
-#         Return a list of all users.
-#         """
-#         services = service.objects.filter(Destination=request.destination_id)
-
-#         return Response(services)
+    def get_queryset(self):
+        print(self.kwargs)
+        agency = self.kwargs.get(self.lookup_url_kwarg)
+        print(agency)
+        queryset = service.objects.filter(Agency_id=agency)
+        print(queryset)
+        return queryset 
 
 
 ### Review view:
@@ -111,10 +116,6 @@ class ReviewDeleteView(generics.DestroyAPIView):
     # permission_classes = (touristPermission,)
     serializer_class = ReviewSerializer
     lookup_field = 'review_id'
-
-    def delete(self, *args , **kwargs):
-        print(type(self.get_serializer_context()))
-        return super().delete(*args,**kwargs)
 
 
 class ReviewUpdateView(generics.UpdateAPIView):

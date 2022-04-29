@@ -62,7 +62,5 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = review
-        fields = '__all__'
-
-
-    
+        fields = ('review_id', "tourist", "feedback", "rating", "Service")
+            
