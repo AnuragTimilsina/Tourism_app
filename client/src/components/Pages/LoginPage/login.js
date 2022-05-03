@@ -77,18 +77,21 @@ function Login() {
         address,
       })
       .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e.response);
-        if (e.response.data.username[0]) {
-          setusernameError(e.response.data.username[0]);
-        } else if (e.response.data.password[0]) {
-          setpasswordError(e.response.data.password[0]);
-        } else if (e.response.data.password2[0]) {
-          setpasswordError(e.response.data.password2[0]);
-        } else if (e.response.data.email[0]) {
-          setpasswordError(e.response.data.email[0]);
+        if (Object.keys(res.data.error).length !== 0) {
+          if (res.data.error.username) {
+            setusernameError(res.data.error.username[0]);
+          } else if (res.data.error.password) {
+            setpasswordError(res.data.error.password[0]);
+          } else if (res.data.error.password2) {
+            setpasswordError(res.data.error.password2[0]);
+          } else if (res.data.error.email) {
+            setemailError(res.data.error.email[0]);
+          }
+        } else {
+          console.log("here");
+          localStorage.setItem("token", res.data.token);
+          console.log(res.data.token);
+          navigate("/");
         }
       });
   }
@@ -114,14 +117,8 @@ function Login() {
               setLoginPassword(event.target.value);
             }}
           />
-          {/* <p className="forgot">
-            If you have forgotten your password,
-            <Link className="link" to="/forget">
-              click here!
-            </Link>{" "}
-          </p> */}
           <p style={{ color: "red" }}> {loginError} </p>
-          {/* <Link to="/"> */}
+
           <button className="sumbit" onClick={loginData}>
             Login
           </button>

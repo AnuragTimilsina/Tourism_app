@@ -8,10 +8,6 @@ export default function DestinationCards(prop) {
     <div className="DestinationCards">
       <div className="image">
         <img src={prop.src} alt={prop.src} />
-        {/* <div className="ratingBox">
-          <AiTwotoneStar size={26} color="#FF492F" />
-          <h1>4.9</h1>
-        </div> */}
       </div>
       <div className="Description">
         <p className="title">{prop.title}</p>

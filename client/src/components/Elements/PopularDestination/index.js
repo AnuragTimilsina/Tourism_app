@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dhulikhel from "../../../assets/images/dhulikhel.jpg";
 import "./PopularDestination.sass";
 import { useNavigate } from "react-router-dom";
 import DestinationCards from "../DestinationCards";
+import axios from "axios";
+import { BaseUrl } from "../../../common/config/httpsConfig";
 export default function PopularDestination() {
   const navigate = useNavigate();
-
-  const x = [1, 2, 3];
+  const [destinations, setDestinations] = useState([]);
+  useEffect(() => {
+    axios.get(BaseUrl + "services/destinationlist").then((res) => {
+      setDestinations(res.data);
+    });
+  }, []);
   return (
     <div className="DestinationPage">
       <div className="DestinationPageTitle">
@@ -24,14 +30,19 @@ export default function PopularDestination() {
       </div>
 
       <div className="DestinationCardsSection">
-        {x.map(() => (
-          <DestinationCards
-            src={Dhulikhel}
-            title="Dhulikhel, Bagmati -Nepal"
-            description="Dhulikhel is a municipality in Kavrepalanchok District of Nepal. Two major highway B.P.  "
-            id="12329201"
-          />
-        ))}
+        {destinations.map((destination, index) => {
+          if (index <= 4) {
+            console.log(index);
+            return (
+              <DestinationCards
+                src={Dhulikhel}
+                title={destination.destination_name}
+                description={destination.destination_description}
+                id={destination.destination_id}
+              />
+            );
+          }
+        })}
       </div>
     </div>
   );

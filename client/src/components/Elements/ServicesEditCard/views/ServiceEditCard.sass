@@ -1,0 +1,45 @@
+.ServiceEditCards
+    margin: 30px 0px
+    height: 400px
+    width: 300px
+    text-align: justify
+    .image
+        position: relative
+        & img
+            height: 400px
+            width: 300px
+        .ratingBox
+            display: flex
+            flex-direction: row
+            align-items: center
+            justify-content: center
+            height: 5vw
+            width: 5vw
+            position: absolute
+            background: white
+            bottom: 20px
+            right: 20px
+
+    .Description
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        .title
+            font-size: 21px
+            font-weight: bold
+        .description
+            font-size: 18px
+        .startJourneyButton
+            cursor: pointer
+            display: flex
+            align-items: flex-end
+            color: #FF492F
+            transition: all .5s ease-in-out
+            & p
+                font-size: 20px
+                margin-right: 2%
+                transition: all .5s ease-in-out
+            &:hover
+                transition: all .5s ease-in-out
+                & p
+                    margin-right: 5%

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BaseUrl } from "../../../../common/config/httpsConfig";
 import "./AllDestinations.sass";
 import useAuth from "../../../../logic/auth";
@@ -10,23 +10,24 @@ export default function AllDestinations() {
   useEffect(() => {
     checkauth();
   });
-  // useEffect(() => {
-  //   axios.get(BaseUrl + "services/destinationlist/").then((res) => {
-  //     console.log(res);
-  //   });
-  // });
+  const [destinations, setDestinations] = useState([]);
+  useEffect(() => {
+    axios.get(BaseUrl + "services/destinationlist/").then((res) => {
+      setDestinations(res.data);
+    });
+  }, []);
   return (
     <div className="AllDestinationPage">
       <div className="DestinationPageTitle">
         <h1>All Destinations </h1>
       </div>
       <div className="DestinationCardsSection">
-        {[1, 2, 3, 4, 5, 6, 7, , 8].map((e) => (
+        {destinations.map((destination, index) => (
           <DestinationCards
             src={Dhulikhel}
-            title="Dhulikhel, Bagmati -Nepal"
-            description="Dhulikhel is a municipality in Kavrepalanchok District of Nepal. Two major highway B.P.  "
-            id="12329201"
+            title={destination.destination_name}
+            description={destination.destination_description}
+            id={destination.destination_id}
           />
         ))}
       </div>

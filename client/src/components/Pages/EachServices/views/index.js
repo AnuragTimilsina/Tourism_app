@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Hotel from "../../../../assets/images/hotel.jpg";
-import Dhulikhel from "../../../../assets/images/dhulikhel.jpg";
 import "./EachServices.sass";
 import ReviewCard from "../../../Elements/ReviewCard/views";
 import useAuth from "../../../../logic/auth";
@@ -8,8 +7,41 @@ import { AiFillStar } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
 import { FaSwimmingPool } from "react-icons/fa";
 import Gallery from "react-grid-gallery";
+import { useParams } from "react-router-dom";
+import KhaltiCheckout from "khalti-checkout-web";
+import axios from "axios";
+import { BaseUrl } from "../../../../common/config/httpsConfig";
 
 export default function EachServices() {
+  let config = {
+    // replace this key with yours
+    publicKey: "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
+    productIdentity: "1234567890",
+    productName: "Drogon",
+    productUrl: "http://gameofthrones.com/buy/Dragons",
+    eventHandler: {
+      onSuccess(payload) {
+        // hit merchant api for initiating verfication
+        console.log(payload);
+      },
+      // onError handler is optional
+      onError(error) {
+        // handle errors
+        console.log(error);
+      },
+      onClose() {
+        console.log("widget is closing");
+      },
+    },
+    paymentPreference: [
+      "KHALTI",
+      "EBANKING",
+      "MOBILE_BANKING",
+      "CONNECT_IPS",
+      "SCT",
+    ],
+  };
+  let checkout = new KhaltiCheckout(config);
   const IMAGES = [
     {
       src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
@@ -101,17 +133,27 @@ export default function EachServices() {
     },
   ];
   const { checkauth } = useAuth();
+  let param = useParams();
   useEffect(() => {
     checkauth();
   });
+  const [detail, setDetail] = useState({});
+  useEffect(() => {
+    console.log(param);
+    axios.get(BaseUrl + `services/servicedetail/${param.id}`).then((res) => {
+      setDetail(res.data);
+    });
+  }, []);
+
+  const [guestNo, setGuestNo] = useState(1);
   return (
     <div className="EachServices">
       <div className="Page1">
         <img className="Image" src={Hotel} />
         <div className="box">
           <div>
-            <h1>Hotel Dwarika is the hotel</h1>
-            <p>Make your Journey more awesome</p>
+            <h1>{detail.package_name}</h1>
+            <p>{detail.description}</p>
           </div>
         </div>
       </div>
@@ -166,7 +208,7 @@ export default function EachServices() {
             <div className="booking">
               <div className="heading">
                 <div className="price">
-                  <h1>$4</h1>
+                  <h1>Rs{detail.amount}</h1>
                   <p> per night</p>
                 </div>
                 <div className="rating">
@@ -189,9 +231,22 @@ export default function EachServices() {
                   </div>
                 </div>
                 <span className="horizental" />
-                <input type="number" placeholder="Number of Guests" min={0} />
+                <input
+                  type="number"
+                  placeholder="Number of Guests"
+                  min={0}
+                  onChange={(e) => {
+                    setGuestNo(e.target.value);
+                  }}
+                />
               </div>
-              <button>Proceed</button>
+              <button
+                onClick={() => {
+                  checkout.show({ amount: detail.amount * guestNo * 100 });
+                }}
+              >
+                Proceed
+              </button>
             </div>
           </div>
           <div className="gallery">
