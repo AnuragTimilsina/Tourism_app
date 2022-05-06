@@ -42,6 +42,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(_('email address'), unique=True)
 
+    password2 = models.CharField(_('password'), max_length=128, blank=True)
+
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Phone number should be in correct format'. Up to 15 digits allowed.")
     mobile_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
