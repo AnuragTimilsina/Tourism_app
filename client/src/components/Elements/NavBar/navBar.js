@@ -8,7 +8,7 @@ export default function NavigationBar() {
   let location = useLocation();
   const navigate = useNavigate();
   const [loginState, setLoginState] = useState(false);
-  const [agenxy, setAgency] = useState(false);
+  const [agency, setAgency] = useState(false);
   useEffect(() => {
     console.log(location.pathname);
     if (
@@ -29,12 +29,12 @@ export default function NavigationBar() {
     <div className="Navbar">
       <div className="Header">
         <div className="logo">
-          <Link to="/">
+          <Link to={!agency ? "/agencyhome" : "/"}>
             <img src={Logo} />
           </Link>
         </div>
         <div className="options">
-          {agenxy ? (
+          {agency ? (
             <>
               <p>
                 <p>Destination</p>

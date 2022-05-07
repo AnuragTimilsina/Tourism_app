@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BaseUrl } from "../../../../common/config/httpsConfig";
-import "./ServiceEdit.sass";
-export default function ServiceEdit() {
+import "../../ServiceEdit/views/ServiceEdit.sass";
+export default function AddServices() {
   const param = useParams();
   useEffect(() => {
     axios.get(BaseUrl + `${param}`).then((res) => {});
@@ -40,15 +40,21 @@ export default function ServiceEdit() {
         </div>
         <div className="descriptionInput">
           <p>Description</p>
-          <textarea
-            aria-multiline="true"
-            placeholder="Description"
-            defaultValue={description}
-          />
+          <textarea aria-multiline="true" placeholder="Description" />
         </div>
       </div>
       <div className="submitButton">
-        <button onClick={() => {}}>Submit</button>
+        <button
+          onClick={() => {
+            axios.post(BaseUrl + "", {
+              title,
+              image,
+              description,
+            });
+          }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

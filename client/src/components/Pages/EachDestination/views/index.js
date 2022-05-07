@@ -46,7 +46,7 @@ export default function EachDestination() {
           <h1 className="title">Popular Servies</h1>
           <button
             onClick={() => {
-              navigate("/services");
+              navigate(`/services/${param.id}`);
             }}
           >
             See All
