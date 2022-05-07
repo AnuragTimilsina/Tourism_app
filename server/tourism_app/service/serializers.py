@@ -6,13 +6,12 @@ class ServiceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = service
-        fields = ['Agency', 'Destination', 'package_name', 'departure_date', 'no_of_person', 'amount', 'description', 'users', 'service_pic']
+        fields = ['Agency', 'Destination', 'package_name', 'no_of_person', 'amount', 'description', 'users', 'service_pic']
 
     extra_kwargs = {
         'Agency': {'required': True},
         'Destination': {'required': True},
         'package_name': {'required': True},
-        'departure_date': {'required': True},
         'no_of_person': {'required': True},
         'amount': {'required': True},
         'description': {'required': True},
@@ -28,7 +27,6 @@ class ServiceSerializer(serializers.ModelSerializer):
             Agency = validated_data.get('Agency'),
             Destination = validated_data.get('Destination'),
             package_name = validated_data.get('package_name'),
-            departure_date = validated_data.get('departure_date'),
             no_of_person = validated_data.get('no_of_person'),
             amount = validated_data.get('amount'),
             description = validated_data.get('description'),
@@ -42,7 +40,6 @@ class ServiceSerializer(serializers.ModelSerializer):
         instance.Agency = validated_data.get('Agency')
         instance.Destination = validated_data.get('Destination')
         instance.package_name = validated_data.get('package_name')
-        instance.departure_date = validated_data.get('departure_date')
         instance.no_of_person = validated_data.get('no_of_person')
         instance.amount = validated_data.get('amount')
         instance.description = validated_data.get('description')
