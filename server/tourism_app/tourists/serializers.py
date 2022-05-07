@@ -12,6 +12,13 @@ class RegisterSerializer(serializers.ModelSerializer):
                         'password2': {'write_only':True},       
                     }
 
+        def validate(self, attrs):
+            if attrs['password'] != attrs['password2']:
+                raise serializers.ValidationError(
+                    {"password": "Password fields didn't match!"})
+
+            return attrs
+
 
 class touristSerializer(serializers.ModelSerializer):
     class Meta:

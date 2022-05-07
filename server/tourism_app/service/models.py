@@ -24,7 +24,7 @@ class service(models.Model):
     Destination = models.ForeignKey(destination, on_delete=models.CASCADE)
     Agency = models.ForeignKey(agency, on_delete=models.CASCADE, null=True)
     package_name = models.CharField(max_length=100, blank=False, default="")
-    departure_date = models.DateField()
+    # departure_date = models.DateField()
     no_of_person = models.PositiveIntegerField(default=0)
     amount=models.PositiveIntegerField()
     users = models.ManyToManyField(User, blank=True)
