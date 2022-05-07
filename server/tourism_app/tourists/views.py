@@ -20,13 +20,17 @@ class RegisterAPI(APIView):
         serializer = RegisterSerializer(data=request.data)
         
         if not serializer.is_valid():
+            print(serializer.data)
             return Response({'error':serializer.errors})
 
         serializer.save()
 
+        print(serializer.data)
+        
         user = User.objects.get(username=serializer.data['username'])
 
         token_obj, _ = Token.objects.get_or_create(user=user)
+
 
         return Response({
             'error':serializer.errors, 
