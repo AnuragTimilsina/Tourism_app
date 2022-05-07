@@ -19,6 +19,9 @@ from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
 from rest_framework.documentation import include_docs_urls
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +35,5 @@ urlpatterns = [
     #     ), name='swagger-ui'),
     path('docs/', include_docs_urls(title='My API title')),
 ]
+
+urlpatterns += static(settings. MEDIA_URL, document_root=settings.MEDIA_ROOT)
