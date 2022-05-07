@@ -39,7 +39,7 @@ class service(models.Model):
 class review(models.Model):
     review_id = models.AutoField(primary_key=True)
     tourist = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    feedback = models.TextField(max_length=200)
+    feedback = models.TextField(max_length=200, blank=True)
     rating = models.SmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)]) # 5 possible rating values 1-5
     Service = models.ForeignKey(service, on_delete=models.CASCADE, null=True)
 
