@@ -64,36 +64,35 @@ function Login() {
   }
 
   function signupData() {
+    let formdata = new FormData();
+    formdata.append("username", username);
+    formdata.append("password", password);
+    formdata.append("password2", password2);
+    formdata.append("email", email);
+    formdata.append("address", address);
+    formdata.append("profile_pic", image);
     setusernameError("");
     setpasswordError("");
     setpassword2Error("");
     setemailError("");
-    axios
-      .post(BaseUrl + "tourists/api/register/", {
-        username,
-        password,
-        email,
-        password2,
-        address,
-      })
-      .then((res) => {
-        if (Object.keys(res.data.error).length !== 0) {
-          if (res.data.error.username) {
-            setusernameError(res.data.error.username[0]);
-          } else if (res.data.error.password) {
-            setpasswordError(res.data.error.password[0]);
-          } else if (res.data.error.password2) {
-            setpasswordError(res.data.error.password2[0]);
-          } else if (res.data.error.email) {
-            setemailError(res.data.error.email[0]);
-          }
-        } else {
-          console.log("here");
-          localStorage.setItem("token", res.data.token);
-          console.log(res.data.token);
-          navigate("/");
+    axios.post(BaseUrl + "tourists/api/register/", formdata).then((res) => {
+      if (Object.keys(res.data.error).length !== 0) {
+        if (res.data.error.username) {
+          setusernameError(res.data.error.username[0]);
+        } else if (res.data.error.password) {
+          setpasswordError(res.data.error.password[0]);
+        } else if (res.data.error.password2) {
+          setpasswordError(res.data.error.password2[0]);
+        } else if (res.data.error.email) {
+          setemailError(res.data.error.email[0]);
         }
-      });
+      } else {
+        console.log("here");
+        localStorage.setItem("token", res.data.token);
+        console.log(res.data.token);
+        navigate("/");
+      }
+    });
   }
 
   return (

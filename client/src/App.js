@@ -11,6 +11,7 @@ import AllDestinations from "./components/Pages/AllDestinationPage/views";
 import AllServices from "./components/Pages/AllServices/views";
 import AgencyHome from "./components/Pages/AgencyHome/views";
 import ServiceEdit from "./components/Pages/ServiceEdit/views";
+import AddServices from "./components/Pages/AddService/views";
 function App() {
   return (
     <div className="App">
@@ -20,11 +21,12 @@ function App() {
         <Route path="/destination/:id" element={<EachDestination />} />
         <Route path="/service/:id" element={<EachServices />} />
         <Route path="/destination" element={<AllDestinations />} />
-        <Route path="/services" element={<AllServices />} />
+        <Route path="/services/:id" element={<AllServices />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/agencyhome" element={<AgencyHome />} />
         <Route path="/agency/serviceEdit/:id" element={<ServiceEdit />} />
+        <Route path="/addService" element={<AddServices />} />
       </Routes>
       <Footer />
     </div>

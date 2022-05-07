@@ -23,8 +23,12 @@ function AdminLogin() {
         password,
       })
       .then((res) => {
-        localStorage.setItem("agencyToken", res.data.token);
-        navigate("/agencyhome");
+        if (res.data.Error) {
+          setMessage(res.data.Error);
+        } else {
+          localStorage.setItem("agencyToken", res.data.token);
+          navigate("/agencyhome");
+        }
       })
       .catch((e) => {
         if (e.response.data.non_field_errors) {
