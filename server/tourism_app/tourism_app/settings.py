@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-m80-378t)1-q=+*ebz$!*3qe&v6c_w^z1nzb@09=h57y^_t&!t'
+# with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
+#     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

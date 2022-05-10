@@ -63,5 +63,7 @@ class VerifyToken(APIView):
         tokens = [str(i) for i in Token.objects.all()]
         # print(tokens)
         if request.data['token'] in tokens:
-            return Response({'token_verified':True})
+            token = Token.objects.get(key=request.data['token'])
+            user = User.objects.get(id=token.user_id)
+            return Response({'token_verified':True, 'user': touristSerializer(user).data}, status=200)
         return Response({'token_verified':False})

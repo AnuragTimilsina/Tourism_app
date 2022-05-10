@@ -23,5 +23,5 @@ class RegisterSerializer(serializers.ModelSerializer):
 class touristSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address', 'profile_pic') # Profile Image to be handeled soon.
+        fields = ('id', 'username', 'is_tourist', 'is_agency', 'mobile_number', 'country', 'address', 'profile_pic') # Profile Image to be handeled soon.
 

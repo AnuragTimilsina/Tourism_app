@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from tourists.models import User
 # from .models import agency
-# from .serializers import AgencySerializer
+from tourists.serializers import touristSerializer
 
 
 class AgencyAuthToken(ObtainAuthToken):
@@ -38,7 +38,9 @@ class VerifyAgencyToken(APIView):
         
         # print(tokens)
         if request.data['token'] in token:
-            return Response({'token_verified':True})
+            user_token = Token.objects.get(key=request.data['token'])
+            user = User.objects.get(id=user_token.user_id)
+            return Response({'token_verified':True, 'user': touristSerializer(user).data}, status=200)
         return Response({'token_verified':False})
 
 
