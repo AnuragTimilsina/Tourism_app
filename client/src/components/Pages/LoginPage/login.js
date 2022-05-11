@@ -48,6 +48,7 @@ function Login() {
         password: loginPassword,
       })
       .then((res) => {
+        localStorage.setItem("id", res.data.id);
         localStorage.setItem("token", res.data.token);
         navigate("/");
       })
@@ -70,12 +71,14 @@ function Login() {
     formdata.append("password2", password2);
     formdata.append("email", email);
     formdata.append("address", address);
-    formdata.append("profile_pic", image);
+    formdata.append("profile_pic", image[0], image[1]);
     setusernameError("");
     setpasswordError("");
     setpassword2Error("");
     setemailError("");
+    console.log(image[1]);
     axios.post(BaseUrl + "tourists/api/register/", formdata).then((res) => {
+      console.log(res);
       if (Object.keys(res.data.error).length !== 0) {
         if (res.data.error.username) {
           setusernameError(res.data.error.username[0]);
@@ -141,6 +144,7 @@ function Login() {
               type="file"
               accept="image/*"
               onChange={(e) => {
+                console.log(e.target.files);
                 setImage(e.target.files);
               }}
             />

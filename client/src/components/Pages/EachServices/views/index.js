@@ -3,7 +3,7 @@ import Hotel from "../../../../assets/images/hotel.jpg";
 import "./EachServices.sass";
 import ReviewCard from "../../../Elements/ReviewCard/views";
 import useAuth from "../../../../logic/auth";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsDot } from "react-icons/bs";
 import { FaSwimmingPool } from "react-icons/fa";
 import Gallery from "react-grid-gallery";
@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import KhaltiCheckout from "khalti-checkout-web";
 import axios from "axios";
 import { BaseUrl } from "../../../../common/config/httpsConfig";
+import Rating from "react-rating";
 
 export default function EachServices() {
   let config = {
@@ -134,18 +135,26 @@ export default function EachServices() {
   ];
   const { checkauth } = useAuth();
   let param = useParams();
-  useEffect(() => {
-    checkauth();
-  });
   const [detail, setDetail] = useState({});
   useEffect(() => {
-    console.log(param);
+    checkauth();
     axios.get(BaseUrl + `services/servicedetail/${param.id}`).then((res) => {
       setDetail(res.data);
     });
+    axios.get(BaseUrl + "");
   }, []);
 
   const [guestNo, setGuestNo] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+  function addReview() {
+    axios.post(BaseUrl + "services/addreview/", {
+      tourist: localStorage.getItem("id"),
+      feedback: review,
+      Service: param,
+      rating: rating,
+    });
+  }
   return (
     <div className="EachServices">
       <div className="Page1">
@@ -163,13 +172,6 @@ export default function EachServices() {
             <div className="descriptions">
               <div className="Header">
                 <h1>5 star hotel</h1>
-                <div className="rating">
-                  <AiFillStar size={32} />
-                  <AiFillStar size={32} />
-                  <AiFillStar size={32} />
-                  <AiFillStar size={32} />
-                  <AiFillStar size={32} />
-                </div>
               </div>
               <div className="headings">
                 <p>Dhulikhel, 3 Bhattidada</p>
@@ -255,8 +257,25 @@ export default function EachServices() {
           <span className="line" />
           <div className="reviews">
             <div className="reviewArea">
-              <textarea placeholder="Write your review..." aria-multiline />
-              <button>Submit</button>
+              <textarea
+                onChange={(e) => {
+                  setReview(e.target.value);
+                }}
+                placeholder="Write your review..."
+                aria-multiline
+              />
+              <div className="rating">
+                <Rating
+                  start={0}
+                  stop={5}
+                  fullSymbol={<AiFillStar color="orange" size={42} />}
+                  emptySymbol={<AiOutlineStar size={42} />}
+                  onChange={(e) => {
+                    setRating(e);
+                  }}
+                />
+              </div>
+              <button onClick={addReview}>Submit</button>
             </div>
             <span className="line" />
             {[1, 2, 3, 4, 5].map((a) => (

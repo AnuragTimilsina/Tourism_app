@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { GrAdd } from "react-icons/gr";
 import { useNavigate, useParams } from "react-router-dom";
 import ServiceEditCards from "../../../Elements/ServicesEditCard/views";
@@ -12,12 +12,13 @@ export default function AgencyHome() {
   const navigate = useNavigate();
   const agency_id = localStorage.getItem("id");
   const { checkAgencyAuth } = useAuth();
+  const [data, setData] = useState();
   useEffect(() => {
-    // checkAgencyAuth();
+    checkAgencyAuth();
     axios
-      .get(BaseUrl + `/services/listagencyservice/${agency_id}`)
+      .get(BaseUrl + `services/listagencyservice/${agency_id}`)
       .then((res) => {
-        console.log(res);
+        setData(res.data);
       });
   }, []);
   return (
@@ -35,11 +36,18 @@ export default function AgencyHome() {
         </div>
       </div>
       <div className="ServicesEditCards">
+        {!data ? (
+          <div />
+        ) : (
+          data.map((datas, index) => (
+            <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
+          ))
+        )}
+
+        {/* <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
         <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
         <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
-        <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
-        <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
-        <ServiceEditCards src={Dhulikhel} title="Dhulikhel" />
+        <ServiceEditCards src={Dhulikhel} title="Dhulikhel" /> */}
       </div>
     </div>
   );

@@ -27,16 +27,19 @@ function AdminLogin() {
           setMessage(res.data.Error);
         } else {
           localStorage.setItem("agencyToken", res.data.token);
+          localStorage.setItem("id", res.data.id);
           navigate("/agencyhome");
         }
       })
       .catch((e) => {
-        if (e.response.data.non_field_errors) {
-          setMessage(e.response.data.non_field_errors[0]);
-        } else if (e.response.data.username) {
-          setUsernameError(e.response.data.username.toString());
-        } else if (e.response.data.password) {
-          setpasswordError(e.response.data.password.toString());
+        if (e.response) {
+          if (e.response.data.non_field_errors) {
+            setMessage(e.response.data.non_field_errors[0]);
+          } else if (e.response.data.username) {
+            setUsernameError(e.response.data.username.toString());
+          } else if (e.response.data.password) {
+            setpasswordError(e.response.data.password.toString());
+          }
         }
       });
   }

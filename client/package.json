@@ -12,6 +12,7 @@
     "react-dom": "^18.0.0",
     "react-grid-gallery": "^0.5.5",
     "react-icons": "^4.3.1",
+    "react-rating": "^2.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sass": "^1.50.0",

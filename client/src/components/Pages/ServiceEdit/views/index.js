@@ -12,9 +12,18 @@ export default function ServiceEdit() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
   const [description, setDescription] = useState("");
+  const [destination, setDestination] = useState("");
   return (
     <div className="ServiceEdit">
       <div className="Title">
+        <p>Destination</p>
+        <input
+          placeholder="Destination"
+          type="text"
+          onChange={(e) => {
+            setDestination(e.target.value);
+          }}
+        />
         <p>Title</p>
         <input
           placeholder="Title"

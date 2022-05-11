@@ -3,23 +3,47 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BaseUrl } from "../../../../common/config/httpsConfig";
 import "../../ServiceEdit/views/ServiceEdit.sass";
+import useAuth from "../../../../logic/auth";
 export default function AddServices() {
-  const param = useParams();
+  const { checkAgencyAuth } = useAuth();
   useEffect(() => {
-    axios.get(BaseUrl + `${param}`).then((res) => {});
-  });
-
+    checkAgencyAuth();
+  }, []);
+  const param = useParams();
+  const [destination, setDestination] = useState(0);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
   const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState(0);
+
+  function addService() {
+    let formdata = new FormData();
+    formdata.append("package_name", title);
+    formdata.append("description", description);
+    formdata.append("amount", amount);
+    formdata.append("Destination", destination);
+    formdata.append("no_of_person", 4);
+
+    axios.post(BaseUrl + `services/addservice/`, formdata).then((res) => {
+      console.log("Here");
+    });
+  }
+
   return (
     <div className="ServiceEdit">
       <div className="Title">
+        <p>Destination</p>
+        <input
+          placeholder="Destination Id"
+          type="number"
+          onChange={(e) => {
+            setDestination(e.target.value);
+          }}
+        />
         <p>Title</p>
         <input
           placeholder="Title"
           type="text"
-          defaultValue={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -40,21 +64,25 @@ export default function AddServices() {
         </div>
         <div className="descriptionInput">
           <p>Description</p>
-          <textarea aria-multiline="true" placeholder="Description" />
+          <textarea
+            aria-multiline="true"
+            placeholder="Description"
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div className="submitButton">
-        <button
-          onClick={() => {
-            axios.post(BaseUrl + "", {
-              title,
-              image,
-              description,
-            });
+        <input
+          type="number"
+          onchange={(e) => {
+            setAmount(e.target.value);
           }}
-        >
-          Submit
-        </button>
+          placeholder="Amount per night"
+          min={500}
+        />
+        <button onClick={addService}>Submit</button>
       </div>
     </div>
   );
