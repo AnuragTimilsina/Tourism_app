@@ -89,11 +89,14 @@ WSGI_APPLICATION = 'tourism_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tourism_db',
-        'USER' : 'tourist_admin',
-        'PASSWORD' : 'Alcohol@6028',
-        'HOST' : 'localhost',
+        'NAME': 'tourism-db',
+        'USER' : 'yatri@tourism-db',
+        'PASSWORD' : 'Alcohol@1729',
+        'HOST' : 'tourism-db.postgres.database.azure.com',
         'PORT' : '5432',
+        'OPTIONS': {
+            'sslmode': 'require'
+        },
     }
 }
 
@@ -184,13 +187,13 @@ CORS_ORIGIN_WHITELIST = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# HTTPS settings:
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+# # HTTPS settings:
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SECURE_SSL_REDIRECT = True
 
-# HSTS settings
-SECURE_HSTS_SECONDS = 31536000 # 1 Year
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# # HSTS settings
+# SECURE_HSTS_SECONDS = 31536000 # 1 Year
+# SECURE_HSTS_PRELOAD = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
