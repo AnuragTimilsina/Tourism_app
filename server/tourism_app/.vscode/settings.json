@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/0ff035a7-97df-43a8-9c68-a9b90b6c8e65/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/tourism-app-api",
+    "appService.deploySubpath": "."
+}
